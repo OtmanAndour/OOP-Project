@@ -20,11 +20,22 @@ class Employee:
     def apply_raise(self):
         self.pay = int(self.pay * self.raise_amount)
 
+    @classmethod
+    def set_raise_amount(cls, amount):
+        cls.raise_amount = amount
 
-print(Employee.num_of_emps)
+    @classmethod
+    def from_str(cls, emp_str):
+        "An alternative constructor for string values"
+        first, last, pay = emp_str.split('-')
+        return cls(first, last, pay)
 
 
 emp_1 = Employee("Otman", "Andour", 50000)
 emp_2 = Employee("Test", "User", 60000)
 
-print(Employee.num_of_emps)
+emp_str_1 = "John-Doe-70000"
+emp_str_2 = "Steve-Smith-30000"
+
+new_emp_1 = Employee.from_str(emp_str_1)
+print(new_emp_1.full_name())
