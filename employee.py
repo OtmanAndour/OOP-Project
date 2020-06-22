@@ -39,6 +39,18 @@ class Employee:
             return False
         return True
 
+    def __repr__(self):
+        return "Employee('{}', '{}', {})".format(self.first, self.last, self.pay)
+
+    def __str__(self):
+        return "{} - {} ".format(self.full_name(), self.email)
+
+    def __add__(self, other):
+        return self.pay + other.pay
+
+    def __len__(self):
+        return len(self.full_name())
+
 
 class Developer(Employee):
     raise_amount = 1.1
@@ -69,9 +81,14 @@ class Manager(Employee):
             print(emp.full_name())
 
 
-dev_1 = Developer("Otman", "Andour", 50000, 'Python')
-dev_2 = Developer("Test", "User", 60000, 'Java')
+emp_1 = Employee("Otman", "Andour", 50000)
+emp_2 = Employee("Test", "User", 60000)
 
-mg_1 = Manager('Jack', 'Daniel', 80000, [dev_1])
+# print(emp_1+emp_2)
 
-print(issubclass(Developer, Employee))
+#mg_1 = Manager('Jack', 'Daniel', 80000, [dev_1])
+
+# print(emp_1.__repr__())
+# print(emp_1.__str__())
+
+print(len(emp_1))
