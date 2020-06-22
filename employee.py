@@ -1,6 +1,9 @@
 # Python Object Oriented Programming
 
 
+import datetime
+
+
 class Employee:
 
     num_of_emps = 0
@@ -30,12 +33,16 @@ class Employee:
         first, last, pay = emp_str.split('-')
         return cls(first, last, pay)
 
+    @staticmethod
+    def is_workday(day):
+        if day.weekday() == 5 or day.weekday() == 6:
+            return False
+        return True
+
 
 emp_1 = Employee("Otman", "Andour", 50000)
 emp_2 = Employee("Test", "User", 60000)
 
-emp_str_1 = "John-Doe-70000"
-emp_str_2 = "Steve-Smith-30000"
+my_date = datetime.date(2019, 5, 18)
 
-new_emp_1 = Employee.from_str(emp_str_1)
-print(new_emp_1.full_name())
+print(Employee.is_workday(my_date))
