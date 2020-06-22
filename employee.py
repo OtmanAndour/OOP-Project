@@ -13,12 +13,15 @@ class Employee:
         self.first = first
         self.last = last
         self.pay = pay
-        self.email = first + "." + last + "@company.com"
 
         Employee.num_of_emps += 1
 
     def full_name(self):
         return '{} {}'.format(self.first, self.last)
+
+    @property
+    def email(self):
+        return '{}.{}@company.com'.format(self.first, self.last)
 
     def apply_raise(self):
         self.pay = int(self.pay * self.raise_amount)
@@ -91,4 +94,8 @@ emp_2 = Employee("Test", "User", 60000)
 # print(emp_1.__repr__())
 # print(emp_1.__str__())
 
-print(len(emp_1))
+emp_1.first = "Jim"
+
+print(emp_1.first)
+print(emp_1.email)
+print(emp_1.full_name())
