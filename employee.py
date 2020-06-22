@@ -40,9 +40,38 @@ class Employee:
         return True
 
 
-emp_1 = Employee("Otman", "Andour", 50000)
-emp_2 = Employee("Test", "User", 60000)
+class Developer(Employee):
+    raise_amount = 1.1
 
-my_date = datetime.date(2019, 5, 18)
+    def __init__(self, first, last, pay, prog_lang):
+        super().__init__(first, last, pay)
+        self.prog_lang = prog_lang
 
-print(Employee.is_workday(my_date))
+
+class Manager(Employee):
+
+    def __init__(self, first, last, pay, list_emp=None):
+        super().__init__(first, last, pay)
+        if list_emp is None:
+            self.list_emp = []
+        self.list_emp = list_emp
+
+    def add_emp(self, emp):
+        if emp not in self.list_emp:
+            self.list_emp.append(emp)
+
+    def remove_emp(self, emp):
+        if emp in self.list_emp:
+            self.list_emp.remove(emp)
+
+    def print_emp(self):
+        for emp in self.list_emp:
+            print(emp.full_name())
+
+
+dev_1 = Developer("Otman", "Andour", 50000, 'Python')
+dev_2 = Developer("Test", "User", 60000, 'Java')
+
+mg_1 = Manager('Jack', 'Daniel', 80000, [dev_1])
+
+print(issubclass(Developer, Employee))
